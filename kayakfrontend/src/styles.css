@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+.flex-container{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.btn-danger{
+    background: linear-gradient(135deg, rgba(255,105,15,1) 0%, rgba(232,56,27,1) 100%);
+    width: 50%;
+    font-weight: bold;
+}

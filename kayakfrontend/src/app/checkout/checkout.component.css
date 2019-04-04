@@ -1,0 +1,47 @@
+.container{
+    width: 70%;
+}
+.display-flex{
+    display: flex;
+    flex-flow: row wrap;
+    /* justify-content: center; */
+}
+
+.flex-item{
+    width: 46%;
+    margin: 1% 2%;
+}
+
+.flex-item-sec{
+    width: 33%;
+    margin: 1% 2%;
+}
+
+.flex-item-info{
+    width: 8%;
+    margin: 1% 2%;
+}
+
+
+.full-row{
+    flex: 100%;
+}
+
+.btn-position{
+    width: 100%;
+    text-align: right;
+}
+
+.ssr{
+    width: 20% !important;
+    margin: 0% 2% 2% 0%;
+}
+
+h3{
+    margin: 1% 0%;;
+    text-transform: uppercase;
+	background: linear-gradient(135deg, rgb(255,105,15) 0%, rgba(232,56,27) 50%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+    font-weight: bold;
+}

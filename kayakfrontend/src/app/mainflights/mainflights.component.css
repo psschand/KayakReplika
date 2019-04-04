@@ -1,0 +1,92 @@
+h2{
+    padding: 2%;
+    text-decoration-line: underline;
+}
+.flex-container{
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.destination-space{
+    width: 30%;
+    box-shadow: 4px 4px 5px 0px rgba(140,138,140,1);
+    border: 1px solid rgba(140,138,140,1);
+    margin-top: 2%;
+    margin-bottom: 4%;
+}
+
+.destination-space:hover{
+    width: 30%;
+    border: 1px solid rgba(255,105,15,1);
+    box-shadow: -4px 4px 5px 0px rgba(255,105,15,1);
+    transition: box-shadow 0.3s;
+}
+
+.moreInfo{
+    display: none;
+    width: 98%;
+    text-align: center;
+    margin-left: 0;
+}
+.background-shadow{
+    background-color: rgba(0,0,0,0.6);
+    height: 100%;
+}
+.background-container{
+    height: 72vh;
+    min-height: 600px;
+    background-image: url('/assets/img/KayakBackground.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.searcher{
+    background-color: white;
+    width: 50%;
+
+}
+.banner-info{
+    color: white;
+    padding: 1% 0%;
+    text-decoration-line: none;
+}
+
+.banner-info li {
+    list-style: none;
+    font-size: 120%;
+    margin: 6% 0;
+}
+
+.searcher ul{
+    background-color: rgb(202, 201, 201);
+    width: 100%;
+    padding: 1.5%;
+}
+.searcher li{
+    font-size: 75%;
+    font-weight: bold;
+    list-style: none;
+    display: inline;
+    color:  rgb(63, 62, 62);
+}
+
+.input-style{
+    width: 45% !important;
+    display: inline;
+    margin: 1.5%; 
+}
+
+.imgs{
+    height: 72vh;
+    max-height: 200px;
+    background-image: url('/assets/img/miami.jpg');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid rgba(140,138,140,1);
+
+}
+
+.card-style{
+    text-align: center;
+    margin: 2% 0%;
+}

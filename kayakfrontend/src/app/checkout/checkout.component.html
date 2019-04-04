@@ -1,0 +1,103 @@
+<div class="container">
+  <form action="">
+    <h3>Información del Usuario</h3>
+    {{passport}}
+    <div class="display-flex">
+      <div class="flex-item">
+        <label for="name">*Nombre</label>
+        <input class="form-control" type="text" name="username" [(ngModel)]='username' >
+      </div>
+      <div class="flex-item">
+        <label for="passport">*# Pasaporte</label>
+        <input class="form-control" type="text" name="passport" [(ngModel)]='passport' >
+      </div>
+      <div class="flex-item">
+        <label for="name">*Correo Electrónico</label>
+        <input class="form-control" type="email" name="email" [(ngModel)]='email' >
+      </div>
+    </div>
+
+    <h3>Método Bancario</h3>
+    <div class="display-flex">
+      <div class="flex-item full-row">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+          <label class="form-check-label" for="exampleRadios1">
+            Visa <i class="fab fa-cc-visa"></i>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+          <label class="form-check-label" for="exampleRadios2">
+            Mastercard <i class="fab fa-cc-mastercard"></i>
+          </label>
+        </div>
+      </div>
+      <br>
+      <div class="flex-item">
+        <label for="name">Número de Tarjeta</label>
+        <input class="form-control" type="text" name="" id="ntarjeta" required>
+      </div>
+      <div class="flex-item">
+        <label for="name">Número de Seguridad</label>
+        <input class="form-control" type="text" name="" id="nseguridad" required>
+      </div>
+    </div>
+
+    <h3>Información del Vuelo</h3>
+    <div class="display-flex">
+      <div class="flex-item-info">
+        <label for="name">ID Vuelo</label>
+        <input class="form-control" #fid type="text" name="" id="" value="{{flightInformation.idFD}}" disabled>
+      </div>
+      <div class="flex-item-info">
+        <label for="name">Disponibles</label>
+        <input class="form-control" #fid type="text" name="" id="" value="{{flightInformation.departure_date}}" disabled>
+      </div>
+      <div class="flex-item-sec">
+        <label for="name">Destino</label>
+        <input class="form-control" type="text" name="" id="destiny" value="{{flightInformation.destiny}}" disabled>
+      </div>
+      <div class="flex-item-sec">
+        <label for="name">Fecha de Salida</label>
+        <input class="form-control" type="text" name="" id="" value="{{flightInformation.departure_date}}" disabled>
+      </div>
+
+      <div *ngIf="isRoundTrip">
+          <div class="display-flex">
+              <div class="flex-item-info">
+                  <label for="name">ID Vuelo</label>
+                  <input class="form-control" #fid type="text" name="" id="" value="{{flightInformation.idFR}}" disabled>
+                </div>
+                <div class="flex-item-info">
+                  <label for="name">Disponibles</label>
+                  <input class="form-control" type="text" name="" id="" value="{{flightInformation.departure_date}}" disabled>
+                </div>
+                <div class="flex-item-sec">
+                  <label for="name">Destino (Regreso)</label>
+                  <input class="form-control" type="text" name="" id="" value="{{flightInformation.origin}}" disabled>
+                </div>
+                <div class="flex-item-sec">
+                  <label for="name">Fecha Regreso</label>
+                  <input class="form-control" type="text" name="" id="" value="{{flightInformation.return_date}}" disabled>
+                </div>
+
+          </div>
+      </div>
+      <div class="flex-item-sec">
+        <label for="tickets_number">Numero de Tiquetes a comprar</label>
+        <input class="form-control" type="text" name="" id="tickets_number"
+          value="{{flightInformation.numberOfTickets}}" disabled>
+      </div>
+      <div class="flex-item">
+        <label for="tickets_number">Clase</label>
+        <input class="form-control" type="text" name="" id="travel_class" value="{{flightInformation.travelClass}}"
+          disabled>
+      </div>
+      <ng-template></ng-template>
+      <div class="btn-position">
+        <button class="btn btn-danger ssr" (click)=reserveTickets()>Procesar compra</button>
+      </div>
+    </div>
+  </form>
+</div>

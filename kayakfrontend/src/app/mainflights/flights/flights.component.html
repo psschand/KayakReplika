@@ -1,0 +1,253 @@
+<div class="form-container">    
+  <form action="" class="searcher">
+    <div class="dropdown">
+      <button class="pickers" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        {{ tripValue }} <i class="fas fa-chevron-down ligth"></i>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <button type="button" #oneWay id="oneWay" class="" value="oneWay"
+          (click)="onTripType(oneWay.value, oneWay.name)">Solo ida</button>
+        <button type="button" #roundTrip id="roundTrip" class="selected" value="roundTrip"
+          (click)="onTripType(roundTrip.value, oneWay.name)">Ida y
+          vuelta</button>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="pickers " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        {{numberOfTickets}} Pasajero <i class="fas fa-chevron-down ligth"></i>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <form>
+          <label for="adults">Adultos</label>
+          <input type="number" name="adults" id="adults" [(ngModel)]='numberOfTickets' value="1" min="0">
+          <br>
+          <label for="kids">Niños</label>
+          <input type="number" name="kids" id="kids" value="0" min="0">
+        </form>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="pickers" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        {{ travelClass }} <i class="fas fa-chevron-down ligth"></i>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <button type="button" name="Ejecutiva" #executive id="executive" class="selected" value="executive"
+          (click)="onTravelClass(executive.name)">Ejecutiva</button>
+        <button type="button" #turist id="turist" name="Turista" class="" value="turist"
+          (click)="onTravelClass(turist.name)">Turista</button>
+      </div>
+    </div>
+  </form>
+  <h1>{{destiny}}</h1>
+  <form action="" class="searcher">
+    <div class="inputs-container">
+      <span class="icon-wrapper"><i class="fas fa-plane"></i></span>
+      <input class="inputs" type="search" [(ngModel)]='origin' name="origin" placeholder="{{lastSearch}}">
+    </div>
+    <div class="icon-container">
+      <i class="fas fa-exchange-alt"></i>
+    </div>
+    <div class="inputs-container">
+      <span class="icon-wrapper"><i class="fas fa-plane"></i></span>
+      <input class="inputs" type="text" [(ngModel)]='destiny' name="destiny" placeholder="Miami">
+    </div>
+    <div class="inputs-container">
+      <span class="icon-wrapper"><i class="fas fa-calendar-alt"></i></span>
+      <input class="inputs" type="date" [(ngModel)]='departure_date' name="fecha_ida" id="">
+      <span class="icon-wrapper"><i class="fas fa-calendar-alt"></i></span>
+      <input class="inputs" type="date" [(ngModel)]='return_date' name="fecha_vuelta" id="return_date">
+    </div>
+    <button type="button" class="btn btn-danger" (click)="onMakeSearch()"><i class="fas fa-search"></i></button>
+  </form>
+</div>
+<div class="flex-container top-border">
+  <div class="sidebar">
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <!-- MAIN PAGE -->
+  <div class="mainpage">
+    <p class="mainpage-title">Encuentra los mejores ofertas disponibles.</p>
+    <div *ngIf="searchMade; else searchHidden">
+      <div *ngIf="flights != 0; else notResults">
+          <div *ngIf="showTemplate; else showOneWayTemplate">
+              <div *ngFor="let flight of flights; let i = index">
+                <div class="grid-container" #dd id="{{i}}" (click)="onDisplayDetails(dd.id)">
+                  <div class="grid-item">
+                    <div class="result">
+                      <div class="form-check flex-item-result">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                          Seleccionar
+                        </label>
+                      </div>
+                      <div class="flex-item-result">
+                        <p>{{ flight[0].departure_time }}</p>
+                        <p>{{ flight[0].airline_name }}</p>
+                      </div>
+                      <div class="flex-item-result">
+                        <p>Directo</p>
+                      </div>
+                      <div class="flex-item-result">
+                        <p>3h 15m</p>
+                        <p>{{ flight[0].origin }} - {{ flight[0].destiny }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid-item-price">
+                    <div class="price">
+                      <h4>₡ {{ add(flight[0].ticket_price, flight[1].ticket_price) }}</h4>
+                      <button class="btn btn-danger" routerLink="/checkout" (click)=updateInformation(dd.id)>Checkout</button>
+                    </div>
+                  </div>
+                  <div class="grid-item">
+                    <div class="result">
+                      <div class="form-check flex-item-result">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                          Seleccionar
+                        </label>
+                      </div>
+                      <div class="flex-item-result">
+                        <p>{{ flight[1].departure_time }}</p>
+                        <p>{{ flight[1].airline_name }}</p>
+                      </div>
+                      <div class="flex-item-result">
+                        <p>Directo</p>
+                      </div>
+                      <div class="flex-item-result">
+                        <p>3h 15m</p>
+                        <p>{{ flight[1].origin }} - {{ flight[1].destiny }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      
+                <!-- STARTS DETAILS -->
+                  <div id="d_{{i}}" class="details d-none">
+                    <h5>Detalles</h5>
+                    <div class="dets">
+                      <div class="form-check flex-item-result">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                          Ida
+                        </label>
+                      </div>
+                      <div class="grid-containter-details">
+                        <div class="grid-item-detail">
+                          <p>{{ flight[0].departure_date }}</p>
+                        </div>
+                        <div class="grid-item-detail">
+                          <p>{{ flight[0].departure_time }}</p>
+                          <p>{{ flight[0].origin }} - {{ flight[0].destiny }}</p>
+                          <p>{{ flight[0].airline_name }}</p>
+                        </div>
+                        <div class="grid-item-detail">Economica 3h 15m</div>
+                      </div>
+                    </div>
+                    <div class="dets">
+                      <div class="form-check flex-item-result">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                          Vuelta
+                        </label>
+                      </div>
+                      <div class="grid-containter-details">
+                        <div class="grid-item-detail">
+                          <p>{{ flight[1].departure_date }}</p>
+                        </div>
+                        <div class="grid-item-detail">
+                          <p>{{ flight[1].departure_time }}</p>
+                          <p>{{ flight[1].origin }} - {{ flight[1].destiny }}</p>
+                          <p>{{ flight[1].airline_name }}</p>
+                        </div>
+                        <div class="grid-item-detail">Economica 3h 15m</div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- END DETAILS -->
+                <hr>
+              </div>
+            </div>
+            <ng-template #showOneWayTemplate>
+              <!-- #ONEWAYTEMPLATE -->
+              <!-- ONE WAY TEMPLATE, IT WILL BE ONLY SHOWN IF showTemplate is FALSE -->
+              <div *ngFor="let flight of flights; let i = index">
+                  <div class="grid-container" #dd id="{{i}}" (click)="onDisplayDetails(dd.id)">
+                    <div class="grid-item">
+                      <div class="result">
+                        <div class="form-check flex-item-result">
+                          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                          <label class="form-check-label" for="defaultCheck1">
+                            Seleccionar
+                          </label>
+                        </div>
+                        <div class="flex-item-result">
+                          <p>{{ flight.departure_time }}</p>
+                          <p>{{ flight.airline_name }}</p>
+                        </div>
+                        <div class="flex-item-result">
+                          <p>Directo</p>
+                        </div>
+                        <div class="flex-item-result">
+                          <p>3h 15m</p>
+                          <p>{{ flight.origin }} - {{ flight.destiny }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="grid-item-price">
+                      <div class="price">
+                        <h4>₡ {{ flight.ticket_price * 565 }}</h4>
+                        <button class="btn btn-danger space" routerLink="/checkout" (click)="updateInformation(dd.id)" >Checkout</button>
+                      </div>
+                    </div>
+                  </div>
+        
+                  <!-- STARTS DETAILS -->
+                    <div id="d_{{i}}" class="details d-none">
+                      <h5>Detalles</h5>
+                      <div class="dets">
+                        <div class="form-check flex-item-result">
+                          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                          <label class="form-check-label" for="defaultCheck1">
+                            Ida
+                          </label>
+                        </div>
+                        <div class="grid-containter-details">
+                          <div class="grid-item-detail">
+                            <p>{{ flight.departure_date }}</p>
+                          </div>
+                          <div class="grid-item-detail">
+                            <p>{{ flight.departure_time }}</p>
+                            <p>{{ flight.origin }} - {{ flight.destiny }}</p>
+                            <p>{{ flight.airline_name }}</p>
+                          </div>
+                          <div class="grid-item-detail">Economica 3h 15m</div>
+                        </div>
+                      </div>
+      
+                    </div>
+                  <!-- END DETAILS -->
+                  <hr>
+                </div>
+            </ng-template>
+      </div>
+      <ng-template #notResults>
+          <div class="text-center backg">
+            <p>Lo sentimos, no hay vuelos disponibles para las fechas/destinos seleccionados.</p>
+            <p>Intenta nuevamente.</p>
+              <img class="test t" src="/assets/img/notresults.png" alt="">
+            </div>
+      </ng-template>
+    </div>
+    <ng-template #searchHidden></ng-template>
+  </div>
+  <div class="ads">
+    <a href="https://www.google.com" target="_blank">
+      <div class="ads-img"></div>
+    </a>
+  </div>
+</div>

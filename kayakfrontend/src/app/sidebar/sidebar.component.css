@@ -1,0 +1,24 @@
+
+.advise{
+    padding: 3%;
+    border: 1px solid #a1a8ad;
+    background-color: #f4f6f8;
+    margin: 6% 7%;
+    box-shadow: 3px 3px 4px 0px rgba(161,168,173,1);
+}
+
+.advise-title{
+    font-size: 80%;
+    color: #6d8494;
+}
+
+.relevant-advise{
+    color: #11b19b;
+    font-weight: bold;
+
+}
+.advise-icon{
+    color: #11b19b;
+    font-size: 200%;
+    margin-left: 40%;
+}

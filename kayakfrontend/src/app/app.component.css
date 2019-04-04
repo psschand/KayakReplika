@@ -1,0 +1,35 @@
+/* .navbar-color{
+
+    background: linear-gradient(135deg, rgba(255,105,15,1) 0%, rgba(232,56,27,1) 100%);
+    
+} */
+
+.navbar-color-primary{
+    border-bottom: 4px solid rgba(255,105,15,1);
+    font-weight: bold;
+    color: #ff690f !important;
+    height: 45px !important;
+}
+
+.navbar-brand img{
+    margin: 0;
+    max-width: 150px;
+    max-height: 65px;
+}
+
+.navbar-brand img:hover{
+    opacity: 0.75;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #ff690f !important;
+}
+
+.navbar a:hover {
+    color: #eb7b36 !important;
+}
+
+h2 > .container{
+    color: white;
+}
