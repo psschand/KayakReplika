@@ -92,7 +92,7 @@ pip install django-filter
 ```
 Ok, now you should be able to run the backend project.
 
-### Running the Frontend
+### Running the Backend
 Now navigate to the Kayakbackend, then go inside kayak folder and write the next commands:
 
 ```
